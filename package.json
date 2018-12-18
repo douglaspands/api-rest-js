@@ -1,0 +1,20 @@
+{
+  "name": "api-core-js",
+  "version": "0.1.0",
+  "description": "CORE API REST/GRAPHQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "rest",
+    "graphql",
+    "nodejs",
+    "js"
+  ],
+  "author": "douglaspands",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
