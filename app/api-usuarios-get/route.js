@@ -5,9 +5,9 @@
  */
 'use strict';
 const router = require('express').Router();
-const auth = require('./auth');
+const auth = require('../handlers/auth');
 const controller = require('./controller');
 
-router.get('/v1/funcionarios', [auth, controller]);
+router.get('/v1/usuarios', [auth, controller]);
 
 module.exports = router;
