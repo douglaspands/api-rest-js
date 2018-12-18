@@ -8,6 +8,6 @@ const router = require('express').Router();
 const auth = require('./auth');
 const controller = require('./controller');
 
-router.get('/v1/funcionarios', [auth, controller]);
+router.get('/v1/usuarios', [auth, controller]);
 
 module.exports = router;

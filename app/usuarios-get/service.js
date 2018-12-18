@@ -1,6 +1,6 @@
 /**
  * @file service.js
- * @description Pesquisar funcionarios
+ * @description Pesquisar usuarios
  * @author douglaspands
  */
 'use strict';
@@ -12,10 +12,10 @@
 const service = () => {
 
     const resultado = [
-        'Maria',
-        'Joao',
-        'Jose',
-        'Paulo'
+        'Victor',
+        'Pedro',
+        'Fernanda',
+        'Paula'
     ];
     return resultado;
 

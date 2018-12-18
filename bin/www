@@ -1,0 +1,30 @@
+/**
+ * @file Inicializador de servidor com cluster
+ * @author @douglaspands
+ * @since 2018-09-11
+ * @version 1.0.1
+ */
+'use strict';
+/**
+ * @file www
+ * @description Criação de load-balance entre threads
+ * @author douglaspands
+ */
+'use strict';
+const cluster = require('cluster');
+const numCPUs = (() => {
+    return (require('os').cpus().length > 2) ? 2 : 1;
+})();
+
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
+    for (let i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`worker ${worker.process.pid} died`);
+    });
+} else {
+    require('../');
+    console.log(`Worker ${process.pid} started`);
+}

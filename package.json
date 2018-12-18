@@ -1,14 +1,13 @@
 {
-  "name": "api-core-js",
+  "name": "api-rest-js",
   "version": "0.1.0",
-  "description": "CORE API REST/GRAPHQL",
+  "description": "CORE API REST",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "start": "node ./bin/www"
   },
   "keywords": [
     "rest",
-    "graphql",
     "nodejs",
     "js"
   ],
