@@ -1,4 +1,4 @@
-const LEVEL = process.env.LEVEL_LOG || 'info';
+const LEVEL = process.env.LOG_LEVEL || 'info';
 
 module.exports = {
   LEVEL,
