@@ -4,7 +4,13 @@
   "description": "CORE API REST",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "npm run test:cover",
+    "code:lint": "eslint \"**/*.js\"",
+    "test:unit": "mocha --full-trace test/unit/**/*.test.js",
+    "test:cover": "nyc mocha test/unit/**/*.test.js",
+    "test:int": "mocha --full-trace test/int/**/*.test.js",
+    "build": "npm run code:lint && npm run test:unit && test:cover && npm run test:int"
   },
   "keywords": [
     "rest",
@@ -23,7 +29,20 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "moment": "^2.23.0",
     "request": "^2.88.0",
     "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "mock-require": "^3.0.2",
+    "nock": "^10.0.4",
+    "nyc": "^13.1.0",
+    "supertest": "^3.3.0"
   }
 }

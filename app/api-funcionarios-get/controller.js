@@ -4,8 +4,8 @@
  * @author douglaspands
  */
 'use strict';
-const service = require('./service');
 const logger = require('../../lib/logger');
+const service = require('./service');
 /**
  * Controller de pesquisa de funcionarios.
  * @param {Express.Request} req 
