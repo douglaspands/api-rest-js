@@ -11,6 +11,13 @@
     "nodejs",
     "js"
   ],
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/douglaspands/api-rest-js.git"
+  },
   "author": "douglaspands",
   "license": "ISC",
   "dependencies": {
