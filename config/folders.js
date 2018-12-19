@@ -6,8 +6,8 @@ const APP = path.join(__dirname, '../app');
 const FIRST_FILE = 'index.js';
 
 module.exports = {
-    ROOT,
-    LIB,
-    APP,
-    FIRST_FILE
-}
+  ROOT,
+  LIB,
+  APP,
+  FIRST_FILE,
+};
