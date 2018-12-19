@@ -3,7 +3,6 @@
  * @author douglaspands
  * @since 2018-12-19
  */
-const logger = require('../../../../lib/logger');
 
 describe('logger', () => {
 
@@ -15,11 +14,15 @@ describe('logger', () => {
     })
 
     afterEach(done => {
+      const mod = require.resolve('../../../../lib/logger/index.js');
+      removeModule(mod);
       process.env.LOG_LEVEL = '';
       done();
     })
 
     it('1 - Logger - Gerar log no level \"silly\"', done => {
+
+      const logger = require('../../../../lib/logger');
 
       try {
         logger.silly('teste - silly');
@@ -32,6 +35,8 @@ describe('logger', () => {
 
     it('2 - Logger - Gerar log no level \"debug\"', done => {
 
+      const logger = require('../../../../lib/logger');
+
       try {
         logger.debug('teste - debug');
         done();
@@ -42,6 +47,8 @@ describe('logger', () => {
     });
 
     it('3 - Logger - Gerar log no level \"verbose\"', done => {
+
+      const logger = require('../../../../lib/logger');
 
       try {
         logger.verbose('teste - verbose');
@@ -54,6 +61,8 @@ describe('logger', () => {
 
     it('4 - Logger - Gerar log no level \"info\"', done => {
 
+      const logger = require('../../../../lib/logger');
+
       try {
         logger.info('teste - info');
         done();
@@ -65,6 +74,8 @@ describe('logger', () => {
 
     it('5 - Logger - Gerar log no level \"warn\"', done => {
 
+      const logger = require('../../../../lib/logger');
+
       try {
         logger.warn('teste - warn');
         done();
@@ -75,6 +86,8 @@ describe('logger', () => {
     });
 
     it('6 - Logger - Gerar log no level \"error\"', done => {
+
+      const logger = require('../../../../lib/logger');
 
       try {
         logger.error('teste - error');
@@ -88,3 +101,7 @@ describe('logger', () => {
   });
 
 });
+
+function removeModule(name) {
+  delete require.cache[name];
+}

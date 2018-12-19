@@ -13,46 +13,103 @@ describe('search-routes', () => {
 
     afterEach(done => {
       mock.stopAll();
-      delete require.cache['/home/douglaspands/workspace/vscode/api-rest-js/lib/search-routes/index.js'];
+      const mod = require.resolve('../../../../lib/search-routes');
+      removeModule(mod);
       done();
     })
 
     it('1 - Lista de rotas vazia - pasta de apis vazia', done => {
 
-        mock('../../../../config', {
-            folder: {
-                APP: path.join(__dirname, '/')
-            }
-        });
-        mock('fs', {
-            readdirSync: () => {
-                return [];
-            }
-        });
-        const searchRoutes = require('../../../../lib/search-routes'); 
-        expect(searchRoutes).to.be.empty;
-        done();
+      mock('../../../../config', {
+        folder: {
+          APP: path.join(__dirname, '/')
+        },
+        logger: {
+          LEVEL: 'info'
+        }
+      });
+      mock('fs', {
+        readdirSync: () => {
+          return [];
+        }
+      });
+
+      const searchRoutes = require('../../../../lib/search-routes');
+      expect(searchRoutes).to.be.empty;
+      done();
 
     });
 
-    it('2 - Lista de rotas vazia - pasta de apis vazia', done => {
+    it('2 - Foi identificado 1 rota', done => {
 
-        mock('../../../../config', {
-            folder: {
-                APP: path.join(__dirname, '/')
-            }
-        });
-        mock('fs', {
-            readdirSync: () => {
-                return [];
-            }
-        });
-        const searchRoutes = require('../../../../lib/search-routes'); 
-        expect(searchRoutes).to.be.empty;
-        done();
+      mock('../../../../lib/logger', {
+        warn: () => ({})
+      });
+      mock('../../../../config', {
+        folder: {
+          APP: 'root/home',
+          FIRST_FILE: 'index.js'
+        },
+        constants: {
+          ROUTER: 'router'
+        },
+        logger: {
+          LEVEL: 'info'
+        }
+      });
+      mock('fs', {
+        readdirSync: () => {
+          return ['api-one', 'api-two', 'api-three'];
+        },
+        existsSync: () => true,
+        lstatSync: () => ({ isFile: () => true })
+      });
+      mock('root/home/api-one/index.js', function router() {});
+      mock('root/home/api-three/index.js', {});
+
+      const searchRoutes = require('../../../../lib/search-routes');
+      expect(searchRoutes).to.have.lengthOf(1);
+      expect(searchRoutes[0].name).to.equal('router');
+      done();
 
     });
+
+    it('3 - Pasta da api invalida', done => {
+
+      mock('../../../../lib/logger', {
+        warn: () => ({})
+      });
+      mock('../../../../config', {
+        folder: {
+          APP: 'root/home',
+          FIRST_FILE: 'index.js'
+        },
+        constants: {
+          ROUTER: 'router'
+        },
+        logger: {
+          LEVEL: 'info'
+        }
+      });
+      mock('fs', {
+        readdirSync: () => {
+          return ['api-one'];
+        },
+        existsSync: () => false,
+        lstatSync: () => ({ isFile: () => false })
+      });
+
+      const searchRoutes = require('../../../../lib/search-routes');
+      expect(searchRoutes).to.have.lengthOf(0);
+      done();
+
+    });
+
 
   });
 
 });
+
+function removeModule(name) {
+  delete require.cache[name];
+}
