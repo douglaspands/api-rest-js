@@ -8,7 +8,7 @@ const mock = require('mock-require');
 
 describe('index.js', () => {
 
-  describe('#server', () => {
+  describe('#export default ()', () => {
 
     afterEach(done => {
       mock.stopAll();
@@ -17,7 +17,7 @@ describe('index.js', () => {
       done();
     })
 
-    it('1 - Configurando o servidor express - Sem rotas', done => {
+    it('1 - Configurando o servidor express - Com rotas', done => {
 
       mock('../../config', {
         server: {
@@ -34,7 +34,28 @@ describe('index.js', () => {
         expect(server).to.be.an('object');
         server.close();
         done();
-      }, 3000);
+      }, 1000);
+
+    });
+
+    it('2 - Configurando o servidor express - Sem rotas', done => {
+
+      mock('../../config', {
+        server: {
+          PORT: 3000
+        }
+      });
+      mock('../../lib/logger', {
+        info: () => {}
+      });
+      mock('../../lib/server-express', null);
+
+      const server = require('../../index');
+      setTimeout(() => {
+        expect(server).to.be.an('object');
+        server.close();
+        done();
+      }, 1000);
 
     });
 

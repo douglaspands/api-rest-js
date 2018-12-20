@@ -4,7 +4,7 @@
  * @since 2018-12-19
  */
 
-describe('logger', () => {
+describe('lib/logger', () => {
 
   describe('#export default ()', () => {
 

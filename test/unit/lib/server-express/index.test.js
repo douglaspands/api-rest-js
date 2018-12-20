@@ -6,7 +6,7 @@
 const expect = require('chai').expect;
 const mock = require('mock-require');
 
-describe('server-express', () => {
+describe('lib/server-express', () => {
 
   describe('#export default ()', () => {
 
@@ -35,7 +35,21 @@ describe('server-express', () => {
 
     });
 
-    it('2 - Configurando o servidor express - 2 rotas', done => {
+    it('2 - Configurando o servidor express - 1 rota', done => {
+
+      mock('../../../../lib/search-routes', [
+        function(req, res, next) {}
+      ]);
+
+      const server = require('../../../../lib/server-express');
+      expect(server).to.be.an('function');
+      expect(server.name).to.equal('app');
+
+      done();
+
+    });
+
+    it('3 - Configurando o servidor express - 2 rotas', done => {
 
       mock('../../../../lib/search-routes', [
         function(req, res, next) {},
