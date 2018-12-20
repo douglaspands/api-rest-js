@@ -5,6 +5,7 @@
  */
 const expect = require('chai').expect;
 const request = require('supertest');
+const mock = require('mock-require');
 
 describe('/v1/funcionarios [get]', () => {
 
@@ -20,7 +21,7 @@ describe('/v1/funcionarios [get]', () => {
         if (err) {
           done(err);
         } else {
-          expect(res.body).to.be.empty;;
+          expect(res.body).to.be.empty;
           done();
         }
       });
