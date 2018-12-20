@@ -1,13 +1,13 @@
 /**
- * @description Cobertura de testes do route da api de api-funcionarios-get
+ * @description Cobertura de testes do route da api de api-usuarios-get
  * @author douglaspands
  * @since 2018-12-19
  */
 const expect = require('chai').expect;
 const mock = require('mock-require');
-const fileModule = '../../../../app/api-funcionarios-get/controller.js';
+const fileModule = '../../../../app/api-usuarios-get/controller.js';
 
-describe('app/api-funcionarios-get/controller.js', () => {
+describe('app/api-usuarios-get/controller.js', () => {
 
   describe('#export default ()', () => {
 
@@ -26,7 +26,7 @@ describe('app/api-funcionarios-get/controller.js', () => {
     it('1 - Execução com sucesso', done => {
 
       mock('../../../../lib/logger', { info: () => {} });
-      mock('../../../../app/api-funcionarios-get/service', () => ['Joao', 'Maria']);
+      mock('../../../../app/api-usuarios-get/service', () => ['Joao', 'Maria']);
 
       const res = () => {
         let statusCode = 0;
@@ -54,7 +54,7 @@ describe('app/api-funcionarios-get/controller.js', () => {
     it('2 - Execução com erro', done => {
 
         mock('../../../../lib/logger', { info: () => {} });
-        mock('../../../../app/api-funcionarios-get/service', () => {
+        mock('../../../../app/api-usuarios-get/service', () => {
             throw 'Simulação de erro';
         });
   

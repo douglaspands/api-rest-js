@@ -22,4 +22,5 @@ const controller = async (req, res) => {
     return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
   }
 };
+
 module.exports = controller;

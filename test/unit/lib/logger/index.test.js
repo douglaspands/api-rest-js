@@ -100,6 +100,26 @@ describe('lib/logger', () => {
 
     });
 
+    it('7 - Logger - Gerar log no level \"info\" - Configuração Default (Sem variavel de ambiente)', done => {
+
+      // Remover cache de modulos de configuração
+      let mod = require.resolve('../../../../config/logger');
+      removeModule(mod);
+      mod = require.resolve('../../../../config');
+      removeModule(mod);
+      
+      process.env.LOG_LEVEL = '';
+      const logger = require('../../../../lib/logger');
+
+      try {
+        logger.info('teste - info');
+        done();
+      } catch (error) {
+        done(error);
+      }
+
+    });
+
   });
 
 });
