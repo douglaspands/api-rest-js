@@ -10,6 +10,12 @@ describe('server-express', () => {
 
   describe('#export default ()', () => {
 
+    beforeEach(done => {
+      const mod = require.resolve('../../../../lib/server-express');
+      removeModule(mod);
+      done();
+    });
+
     afterEach(done => {
       mock.stopAll();
       const mod = require.resolve('../../../../lib/server-express');
@@ -22,9 +28,9 @@ describe('server-express', () => {
       mock('../../../../lib/search-routes', []);
 
       const server = require('../../../../lib/server-express');
-      expect(server).to.be.an('function');  
-      expect(server.name).to.equal('app');      
-    
+      expect(server).to.be.an('function');
+      expect(server.name).to.equal('app');
+
       done();
 
     });
@@ -32,14 +38,14 @@ describe('server-express', () => {
     it('2 - Configurando o servidor express - 2 rotas', done => {
 
       mock('../../../../lib/search-routes', [
-        function (req, res, next) {},
-        function (req, res, next) {}
+        function(req, res, next) {},
+        function(req, res, next) {}
       ]);
 
       const server = require('../../../../lib/server-express');
-      expect(server).to.be.an('function');  
-      expect(server.name).to.equal('app');      
-    
+      expect(server).to.be.an('function');
+      expect(server.name).to.equal('app');
+
       done();
 
     });

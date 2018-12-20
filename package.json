@@ -7,10 +7,10 @@
     "start": "node ./bin/www",
     "test": "npm run test:cover",
     "code:lint": "eslint \"**/*.js\"",
-    "test:unit": "mocha --full-trace test/unit/**/*.test.js",
-    "test:cover": "nyc mocha test/unit/**/*.test.js",
-    "test:int": "mocha --full-trace test/int/**/*.test.js",
-    "build": "npm run code:lint && npm run test:unit && test:cover && npm run test:int"
+    "test:unit": "mocha --full-trace --timeout 10000 test/unit/**/*.test.js",
+    "test:cover": "nyc mocha --timeout 10000 test/unit/**/*.test.js",
+    "test:int": "mocha --full-trace --timeout 10000 test/int/**/*.test.js",
+    "build": "npm run code:lint && npm run test:unit && npm run test:cover && npm run test:int"
   },
   "keywords": [
     "rest",

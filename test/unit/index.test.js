@@ -12,35 +12,29 @@ describe('index.js', () => {
 
     afterEach(done => {
       mock.stopAll();
-      const mod = require.resolve('../../../../lib/server-express');
+      const mod = require.resolve('../../index');
       removeModule(mod);
       done();
     })
 
     it('1 - Configurando o servidor express - Sem rotas', done => {
 
-      mock('../../../../lib/search-routes', []);
+      mock('../../config', {
+        server: {
+          PORT: 3000
+        }
+      });
+      mock('../../lib/logger', {
+        info: () => {}
+      });
+      mock('../../lib/server-express', function(req, res, next) {});
 
-      const server = require('../../../../lib/server-express');
-      expect(server).to.be.an('function');  
-      expect(server.name).to.equal('app');      
-    
-      done();
-
-    });
-
-    it('2 - Configurando o servidor express - 2 rotas', done => {
-
-      mock('../../../../lib/search-routes', [
-        function (req, res, next) {},
-        function (req, res, next) {}
-      ]);
-
-      const server = require('../../../../lib/server-express');
-      expect(server).to.be.an('function');  
-      expect(server.name).to.equal('app');      
-    
-      done();
+      const server = require('../../index');
+      setTimeout(() => {
+        expect(server).to.be.an('object');
+        server.close();
+        done();
+      }, 3000);
 
     });
 

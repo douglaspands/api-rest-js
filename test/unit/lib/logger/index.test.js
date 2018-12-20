@@ -9,6 +9,8 @@ describe('logger', () => {
   describe('#export default ()', () => {
 
     beforeEach(done => {
+      const mod = require.resolve('../../../../lib/logger/index.js');
+      removeModule(mod);
       process.env.LOG_LEVEL = 'silly';
       done();
     })

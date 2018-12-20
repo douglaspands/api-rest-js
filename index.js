@@ -12,3 +12,5 @@ const server = http.createServer(app);
 server.listen(config.server.PORT, () => {
   logger.info(`Servidor iniciado na porta ${config.server.PORT} (pid: ${process.pid})`);
 });
+
+module.exports = server;

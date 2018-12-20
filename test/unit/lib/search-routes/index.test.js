@@ -11,6 +11,12 @@ describe('search-routes', () => {
 
   describe('#export default ()', () => {
 
+    beforeEach(done => {
+      const mod = require.resolve('../../../../lib/search-routes');
+      removeModule(mod);
+      done();
+    })
+
     afterEach(done => {
       mock.stopAll();
       const mod = require.resolve('../../../../lib/search-routes');
