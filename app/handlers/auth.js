@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
     return next();
   }
   logger.debug('usuario não autorizado');
-  return res.status(HttpStatus.UNAUTHORIZED).send('Usuario não autorizado');
+  return res.status(HttpStatus.UNAUTHORIZED).send();
 };
 
 module.exports = auth;

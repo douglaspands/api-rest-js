@@ -19,6 +19,17 @@
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": null,
       "env": { "NODE_ENV": "testing" }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Integration Test Debug",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": ["test/int/**/*.js", "--no-timeouts"],
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": null,
+      "env": { "NODE_ENV": "testing" }
     }
   ]
 }

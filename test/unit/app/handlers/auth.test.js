@@ -42,7 +42,6 @@ describe('app/handlers/auth.js', () => {
             return {
               send: mensagem => {
                 expect(statusCode).to.equal(401);
-                expect(mensagem).to.equal('Usuario não autorizado');
                 done();
               }
             }

@@ -11,15 +11,17 @@ const service = require('./service');
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
-const controller = async (req, res) => {
+const controller = (req, res) => {
   logger.info('rota [get] v1/funcionarios');
   try {
     const listaFuncionarios = service();
-    return res.status(HttpStatus.OK).send({
-      data: listaFuncionarios,
-    });
+    if (listaFuncionarios.length < 1) {
+      res.status(HttpStatus.NO_CONTENT).send();
+    } else {
+      res.status(HttpStatus.OK).send({ data: listaFuncionarios });
+    }
   } catch (error) {
-    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
   }
 };
 

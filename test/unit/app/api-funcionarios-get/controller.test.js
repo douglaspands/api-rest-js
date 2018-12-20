@@ -23,7 +23,7 @@ describe('app/api-funcionarios-get/controller.js', () => {
       done();
     })
 
-    it('1 - Execução com sucesso', done => {
+    it('1 - Execução com sucesso - statusCode 200', done => {
 
       mock('../../../../lib/logger', { info: () => {} });
       mock('../../../../app/api-funcionarios-get/service', () => ['Joao', 'Maria']);
@@ -51,7 +51,33 @@ describe('app/api-funcionarios-get/controller.js', () => {
 
     });
 
-    it('2 - Execução com erro', done => {
+    it('2 - Execução com sucesso - statusCode 200', done => {
+
+      mock('../../../../lib/logger', { info: () => {} });
+      mock('../../../../app/api-funcionarios-get/service', () => []);
+
+      const res = () => {
+        let statusCode = 0;
+        return {
+          status: status => {
+            statusCode = status;
+            return {
+              send: mensagem => {
+                expect(statusCode).to.equal(204);
+                expect(mensagem).to.be.undefined;
+                done();
+              }
+            }
+          }
+        }
+      }
+
+      const controller = require(fileModule);
+      controller(null, res());
+
+    });
+
+    it('3 - Execução com erro - statusCode 500', done => {
 
         mock('../../../../lib/logger', { info: () => {} });
         mock('../../../../app/api-funcionarios-get/service', () => {
