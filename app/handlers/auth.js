@@ -3,6 +3,7 @@
  * @description Autenticaçãod a API
  * @author douglaspands
  */
+const HttpStatus = require('http-status-codes');
 const logger = require('../../lib/logger');
 /**
  * Handler de autenticação.
@@ -16,7 +17,7 @@ const auth = (req, res, next) => {
     return next();
   }
   logger.debug('usuario não autorizado');
-  return res.status(401).send('Usuario não autorizado');
+  return res.status(HttpStatus.UNAUTHORIZED).send('Usuario não autorizado');
 };
 
 module.exports = auth;
