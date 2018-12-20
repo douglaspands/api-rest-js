@@ -1,14 +1,14 @@
 /**
- * @description Cobertura de testes do server-express
+ * @description Cobertura de testes do Inicializador do servidor
  * @author douglaspands
  * @since 2018-12-19
  */
 const expect = require('chai').expect;
 const mock = require('mock-require');
 
-describe('server-express', () => {
+describe('index.js', () => {
 
-  describe('#export default ()', () => {
+  describe('#server', () => {
 
     afterEach(done => {
       mock.stopAll();

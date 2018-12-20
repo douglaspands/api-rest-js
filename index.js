@@ -3,8 +3,6 @@
  * @description Inicialização do servidor
  * @author douglaspands
  */
-
-
 const http = require('http');
 const config = require('./config');
 const logger = require('./lib/logger');
