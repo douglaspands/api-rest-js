@@ -8,3 +8,4 @@ mobiles/
 test/
 .nyc_output/
 .vscode/
+ecosystem.config.js

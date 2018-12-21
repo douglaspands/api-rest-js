@@ -1,0 +1,11 @@
+# file: docker-compose.yaml 
+version: '3'
+services:
+    apicore:
+        build:
+            dockerfile: ./Dockerfile
+            context: .
+        image: douglaspands/apirestjs:0.1.0
+        container_name: apirest-server
+        ports:
+            - 3000:3000
