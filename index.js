@@ -13,8 +13,6 @@ server.listen(config.server.PORT, () => {
   logger.info(`Servidor iniciado na porta ${config.server.PORT} (pid: ${process.pid})`);
 });
 
-process.on('SIGINT', () => {
-  process.exit(0);
-});
+process.on('SIGINT', () => process.exit(0));
 
 module.exports = server;

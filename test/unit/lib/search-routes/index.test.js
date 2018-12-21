@@ -29,6 +29,9 @@ describe('lib/search-routes', () => {
       mock('../../../../lib/logger', {
         warn: () => ({})
       });
+      mock('../../../../lib/search-files', {
+        getFiles: () => ['root/home/api-one/index.js', 'api-two', 'root/home/api-three/index.js']
+      })
       mock('../../../../config', {
         folder: {
           APP: 'root/home',
@@ -39,14 +42,10 @@ describe('lib/search-routes', () => {
         },
         logger: {
           LEVEL: 'info'
-        }
-      });
-      mock('fs', {
-        readdirSync: () => {
-          return ['api-one', 'api-two', 'api-three'];
         },
-        existsSync: () => true,
-        lstatSync: () => ({ isFile: () => true })
+        file: {
+          REGEX_JS_FILE: new RegExp('.+\\.js')
+        }
       });
       mock('root/home/api-one/index.js', function router() {});
       mock('root/home/api-three/index.js', {});
@@ -73,15 +72,14 @@ describe('lib/search-routes', () => {
         },
         logger: {
           LEVEL: 'info'
+        },
+        file: {
+          REGEX_JS_FILE: new RegExp('.+\\.js')
         }
       });
-      mock('fs', {
-        readdirSync: () => {
-          return ['api-one', 'api-two', 'api-three'];
-        },
-        existsSync: () => true,
-        lstatSync: () => ({ isFile: () => true })
-      });
+      mock('../../../../lib/search-files', {
+        getFiles: () => ['root/home/api-one/index.js', 'root/home/api-two/index.js', 'root/home/api-three/index.js']
+      })
       mock('root/home/api-one/index.js', function router() {});
       mock('root/home/api-two/index.js', function router() {});
       mock('root/home/api-three/index.js', {});
@@ -102,12 +100,13 @@ describe('lib/search-routes', () => {
         },
         logger: {
           LEVEL: 'info'
+        },
+        file: {
+          REGEX_JS_FILE: new RegExp('.+\\.js')
         }
       });
-      mock('fs', {
-        readdirSync: () => {
-          return [];
-        }
+      mock('../../../../lib/search-files', {
+        getFiles: () => ['root/home/api-one/index.js', 'root/home/api-two/index.js', 'root/home/api-three/index.js']
       });
 
       const searchRoutes = require('../../../../lib/search-routes');
@@ -131,14 +130,13 @@ describe('lib/search-routes', () => {
         },
         logger: {
           LEVEL: 'info'
+        },
+        file: {
+          REGEX_JS_FILE: new RegExp('.+\\.js')
         }
       });
-      mock('fs', {
-        readdirSync: () => {
-          return ['api-one'];
-        },
-        existsSync: () => false,
-        lstatSync: () => ({ isFile: () => false })
+      mock('../../../../lib/search-files', {
+        getFiles: () => ['root/home/api-one/']
       });
 
       const searchRoutes = require('../../../../lib/search-routes');
