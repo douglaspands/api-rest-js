@@ -6,6 +6,7 @@
   "scripts": {
     "pm2:start": "pm2 start pm2.json",
     "pm2:stop": "pm2 stop pm2.json",
+    "pm2:monit": "pm2 monit",
     "start": "node ./bin/www",
     "test": "npm run test:cover",
     "code:lint": "eslint \"**/*.js\"",
