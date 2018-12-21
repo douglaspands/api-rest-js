@@ -71,3 +71,24 @@ router.get('/v1/funcionarios', [auth, controller]);
 
 module.exports = router;
 ```
+
+### Request das APIs modelo
+API de consulta de funcionarios
+```yaml
+url: http://localhost:3000/v1/funcionarios
+metodo: get
+headers:
+    token: teste
+```
+API de consulta de usuarios
+```yaml
+url: http://localhost:3000/v1/usuarios
+metodo: get
+headers:
+    token: teste
+```
+Health-Check
+```yaml
+url: http://localhost:3000/healthcheck
+metodo: get
+```
