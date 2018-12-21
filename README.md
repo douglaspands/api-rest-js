@@ -59,6 +59,15 @@ Na pasta `/app` contem as pastas de apis:
 - `api-funcionarios-get`
 - `api-usuarios-get`
 
-As demais pastas são de modulos de apoio a aplicação.
+As demais pastas são de modulos de apoio a aplicação.   
 Estarei trabalhando em melhorias na construção da API.
-Para identificação de uma nova api, basta no `index.js` da pasta, exportar o modulo `express.Router()` (olhar as apis de modelo).
+Para identificação de uma nova api, basta no `index.js` da pasta, exportar o modulo `express.Router()`:
+```js
+const router = require('express').Router();
+const auth = require('../handlers/auth');
+const controller = require('./controller');
+
+router.get('/v1/funcionarios', [auth, controller]);
+
+module.exports = router;
+```
